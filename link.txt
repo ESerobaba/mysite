@@ -1,0 +1,5 @@
+
+
+Вёрстка сайта, используемого на курсе: https://github.com/Vokler/store-template-course
+
+Завершённый проект: https://github.com/Vokler/store-server-django/tree/master
