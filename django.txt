@@ -1,1 +1,2 @@
 django-admin startproject store
+python manage.py startapp products
