@@ -1,0 +1,6 @@
+<-------GIT------>
+https://github.com/ESerobaba/mysite.git  
+
+git add -A
+git commit -m "test"
+git push -u origin main
