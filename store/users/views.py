@@ -1,8 +1,8 @@
 from django.shortcuts import render, HttpResponseRedirect
-from django.contrib import auth
+from django.contrib import auth, messages
 from django.urls import reverse
 
-from users.forms import UserLoginForm, UserRegistrationForm
+from users.forms import UserLoginForm, UserRegistrationForm,UserProfileForm
 # Create your views here.
 
 
@@ -14,20 +14,20 @@ def login(request):
             password = request.POST['password']
             user = auth.authenticate(username=username, password=password)
             if user:
-                auth.login(request=request, user=user)
-                return HttpResponseRedirect(redirect_to=reverse('index'))
+                auth.login(request, user)
+                return HttpResponseRedirect(reverse('index'))
     else:
         form = UserLoginForm()
-    context = {'form': form,'title':'Store - Войти'}
+    context = {'form': form}
     return render(request, 'users/login.html', context)
 
 
 def registration(request):
     if request.method == 'POST':
         form = UserRegistrationForm(data=request.POST)
-        if form.is_valid():
-            
+        if form.is_valid():      
             form.save()
+            messages.success(request,'Поздравляем вы успешно зарегистрировались!')
             return HttpResponseRedirect(redirect_to=reverse('users:login'))
     else:
         form = UserRegistrationForm()
@@ -35,5 +35,14 @@ def registration(request):
     return render(request, 'users/registration.html', context)
 
 def profile(request):
-    context = {'title':'Store - Профиль'}
+    if request.method == 'POST':
+        form = UserProfileForm(instance=request.user,data=request.POST,files=request.FILES)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(redirect_to=reverse('users:profile'))
+        else:
+            print(form.errors)
+    else:
+        form = UserProfileForm(instance=request.user)
+    context = {'title':'Store - Профиль','form':form}
     return render(request,'users/profile.html',context)
