@@ -2,7 +2,7 @@ from django.shortcuts import render, HttpResponseRedirect
 from django.contrib import auth, messages
 from django.urls import reverse
 
-from users.forms import UserLoginForm, UserRegistrationForm,UserProfileForm
+from users.forms import UserLoginForm, UserRegistrationForm, UserProfileForm
 # Create your views here.
 
 
@@ -25,18 +25,21 @@ def login(request):
 def registration(request):
     if request.method == 'POST':
         form = UserRegistrationForm(data=request.POST)
-        if form.is_valid():      
+        if form.is_valid():
             form.save()
-            messages.success(request,'Поздравляем вы успешно зарегистрировались!')
+            messages.success(
+                request, 'Поздравляем вы успешно зарегистрировались!')
             return HttpResponseRedirect(redirect_to=reverse('users:login'))
     else:
         form = UserRegistrationForm()
-    context = {'form': form,'title':'Store - Зарегистрироваться'}
+    context = {'form': form, 'title': 'Store - Зарегистрироваться'}
     return render(request, 'users/registration.html', context)
+
 
 def profile(request):
     if request.method == 'POST':
-        form = UserProfileForm(instance=request.user,data=request.POST,files=request.FILES)
+        form = UserProfileForm(instance=request.user,
+                               data=request.POST, files=request.FILES)
         if form.is_valid():
             form.save()
             return HttpResponseRedirect(redirect_to=reverse('users:profile'))
@@ -44,5 +47,10 @@ def profile(request):
             print(form.errors)
     else:
         form = UserProfileForm(instance=request.user)
-    context = {'title':'Store - Профиль','form':form}
-    return render(request,'users/profile.html',context)
+    context = {'title': 'Store - Профиль', 'form': form}
+    return render(request, 'users/profile.html', context)
+
+
+def logout(request):
+    auth.logout(request)
+    return HttpResponseRedirect(reverse('index'))
