@@ -16,3 +16,6 @@ python -Xutf8 manage.py dumpdata products.Product -o goods.json
 
 python manage.py loaddata categories.json
 python manage.py loaddata goods.json
+
+
+git remote add origin  https://github.com/ESerobaba/mysite.git
