@@ -1,8 +1,76 @@
-from django.contrib.auth.forms import AuthenticationForm
-
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, UserChangeForm
+from django import forms
 from users.models import User
 
 class UserLoginForm(AuthenticationForm):
+    username = forms.CharField(widget=forms.TextInput(attrs={
+        'class':"form-control py-4",
+        'placeholder':"Введите имя пользователя"
+    }))
+    password = forms.CharField(widget=forms.PasswordInput(attrs={
+        'class':"form-control py-4",
+        'placeholder':"Введите пароль"
+    }))
     class Meta:
         model = User
         fields = ('username','password')
+    
+class UserRegistrationForm(UserCreationForm):
+    first_name = forms.CharField(widget=forms.TextInput(attrs={
+        'class':"form-control py-4",
+        'placeholder':"Имя"
+    }))
+    last_name = forms.CharField(widget=forms.TextInput(attrs={
+        'class':"form-control py-4",
+        'placeholder':"Фамилия"
+    }))
+    username = forms.CharField(widget=forms.TextInput(attrs={
+        'class':"form-control py-4",
+        'placeholder':"Введите имя пользователя",
+        'aria-describedby':"usernameHelp",
+    }))
+    email = forms.CharField(widget=forms.EmailInput(attrs={
+        'class':"form-control py-4",
+        'aria-describedby':"emailHelp",
+        'placeholder':"Введите адрес эл. почты"
+    }))
+    password1 = forms.CharField(widget=forms.PasswordInput(attrs={
+        'class':"form-control py-4",
+        'placeholder':"Введите пароль"
+    }))
+    password2 = forms.CharField(widget=forms.PasswordInput(attrs={
+        'class':"form-control py-4",
+        'placeholder':"Подтверждение пароля"
+    }))
+    
+    
+    class Meta:
+        model = User
+        fields = ('first_name','last_name','username','email','password1','password2')
+        
+        
+class UserProfileForm(UserChangeForm):
+    first_name = forms.CharField(widget=forms.TextInput(attrs={
+        'class':"form-control py-4"
+        
+    }))
+    last_name = forms.CharField(widget=forms.TextInput(attrs={
+        'class':"form-control py-4"
+        
+    }))
+    username = forms.CharField(widget=forms.TextInput(attrs={
+        'class':"form-control py-4"
+        
+    }))
+    email = forms.CharField(widget=forms.EmailInput(attrs={
+        'class':"form-control py-4"
+        
+    }))
+    image = forms.ImageField(widget=forms.ImageField(attrs={
+        'class':"custom-file-label"
+        
+        
+    }))
+    class Meta:
+        model = User
+        fields = ('first_name','last_name','image','username','email')

@@ -11,7 +11,7 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
 
-    <title>title</title>
+    <title>{{ title }}</title>
 
     <!-- Bootstrap core CSS -->
     <link
@@ -64,7 +64,7 @@
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <li>
-                  <a class="dropdown-item" href="users/profile.html">Профиль</a>
+                  <a class="dropdown-item" href="{% url 'users:profile' %}">Профиль</a>
                 </li>
                 <li>
                   <a class="dropdown-item" href="orders/orders.html">Заказы</a>
