@@ -15,6 +15,17 @@
             ],
             "django": true,
             "justMyCode": true
+        },
+        {
+            "name": "Shell: Django",
+            "type": "python",
+            "request": "launch",
+            "program": "manage.py",
+            "args": [
+                "shell"
+            ],
+            "django": true,
+            "justMyCode": true
         }
     ]
 }
