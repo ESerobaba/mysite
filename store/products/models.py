@@ -1,5 +1,7 @@
 from django.db import models
+
 from users.models import User
+
 # Create your models here.
 
 
@@ -51,4 +53,4 @@ class Basket(models.Model):
         return f'Корзина для {self.user.username} | Продукт {self.product.name} '
 
     def sum(self):
-        return self.product.price*self.quantity
+        return self.product.price * self.quantity

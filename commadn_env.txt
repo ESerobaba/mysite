@@ -1,1 +1,8 @@
 pip install django==3.2.16 
+
+
+flake8 .
+autopep8 --in-place --recursive .
+isort .
+
+pip install psycopg2
