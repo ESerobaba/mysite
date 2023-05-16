@@ -6,3 +6,25 @@ autopep8 --in-place --recursive .
 isort .
 
 pip install psycopg2
+
+GIT
+git push позволяет отправлять локальную ветку на удаленный репозиторий.
+
+PG
+
+CREATE DATABASE store_db;
+CREATE ROLE store_username with password 'store_password';
+ALTER ROLE "store_username" WITH LOGIN;
+GRANT ALL PRIVILEGES ON DATABASE "store_db" to store_username;
+ALTER USER store_username CREATEDB;
+
+CREATE SCHEMA public;
+GRANT ALL ON SCHEMA public TO postgres;
+GRANT ALL ON SCHEMA public TO public;
+
+GITHUB
+
+Client ID
+b9d97db3b2b6c7469fbb
+SECRET CODE 
+acb1c3a2fbf56b831b176276a4ee1183a57b3e1f
