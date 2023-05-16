@@ -45,7 +45,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.github',
-    
+
     'products',
     'users',
 
@@ -172,9 +172,9 @@ EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
 # allauth
 AUTHENTICATION_BACKENDS = [
-    
+
     'django.contrib.auth.backends.ModelBackend',
-    'allauth.account.auth_backends.AuthenticationBackend',    
+    'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
 
@@ -187,4 +187,3 @@ SOCIALACCOUNT_PROVIDERS = {
         ],
     }
 }
-

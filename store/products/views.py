@@ -11,11 +11,6 @@ class IndexView(TitleMixin, TemplateView):
     template_name = 'products/index.html'
     title = 'Store'
 
-    # def get_context_data(self, **kwargs: Any):
-    #     context = super(IndexView, self).get_context_data()
-    #     context['title'] = 'Store'
-    #     return context
-
 
 class ProductsListView(TitleMixin, ListView):
     model = Product

@@ -7,6 +7,9 @@ isort .
 
 pip install psycopg2
 
+
+pip install pytest-django
+pip install pytest
 GIT
 git push позволяет отправлять локальную ветку на удаленный репозиторий.
 
